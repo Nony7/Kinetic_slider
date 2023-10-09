@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        
+*{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        html,body{
+            width: 100%;
+            height: 100%;
+            
+        }
+
+     
+        #wrapper{
+            width: 100vw;
+            min-height: 100vh;
+      
+            overflow: hidden !important;
+    
+        }
+
+        #section1{
+            width: 100vw;
+            min-height: 100vh;
+            background-color: lightblue;
+            overflow: hidden !important;
+        
+        } 
+
+        .rgbKineticSlider{
+
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden !important;
+
+        }
+
+        
+        .rgbKineticSlider canvas{
+            position: absolute;
+            top: 0;
+            left: 0;
+          
+      
+            
+
+        }
+
+        nav a{
+            text-decoration: none;
+            position: absolute;
+            top: 50%;
+            background-color:red;
+            color: whitesmoke;
+            font-size: 3vw;
+            font-family: 'monument';
+           
+        }
+
+        nav a.prev{
+            left: 7vw;
+          
+            border-radius: 50%;
+        }
+
+        nav a.next{
+           right    : 7vw;
+         
+            border-radius: 50%;
+        }
+
+        #section2{
+            width: 100vw;
+            min-height: 100vh;
+            margin-top: 200px;
+            background-color: seagreen;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <div id="section1">
+
+
+
+                                <!-- slider -->
+            <div id="rgbKineticSlider" class="rgbKineticSlider"></div>
+
+            <!-- slider nav -->
+            <nav>
+                <a href="#" class="main-nav prev" data-nav="previous">Prev</a>
+                <a href="#" class="main-nav next" data-nav="next">Next</a>
+            </nav>
+
+       
+        </div>
+
+     <!--    <div id="section2">
+
+        </div> -->
+
+    </div>
+
+ <!--   <script src="/rgbkineticslider.js"></script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.0.2/pixi.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi-filters/1.0.8/filters.min.js"></script>
+
+
+ <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/rgbKineticSlider.js"></script>
+ 
+ -->
+
+ <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/TweenMax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/imagesLoaded.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/pixi.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/pixi-filters.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/rgbKineticSlider.js"></script>
+
+<script>
+    
+   
+const images = [
+     "https://images.unsplash.com/photo-1661505084106-0fcf9d68100b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80.jpg",
+
+     "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80.jpg",
+
+     "https://images.unsplash.com/photo-1553544260-f87e671974ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=507&q=80.jpg",
+
+     "https://images.unsplash.com/photo-1519831296458-9341fc9d2b18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80.jpg",
+
+     "https://images.unsplash.com/photo-1542837540-4a9a1a841adc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80.jpg",
+    
+
+];
+
+// content setup
+const texts = [
+    ["Amal Clooney",],
+    ["Mike Ross", ],
+    ["Blend", ],
+    ["Sophia", ],
+    ["Monaco", ],
+
+];
+
+// init plugin 
+rgbKineticSlider = new rgbKineticSlider({// images and content sources
+slideImages: images, // array of images >demo size : 1920 x 1080
+itemsTitles: texts, // array of titles / subtitles
+
+// displacement images sources
+backgroundDisplacementSprite: 'etro.jpg', // slide displacement image 
+cursorDisplacementSprite: 'hai.jpg', // cursor displacement image
+
+// cursor displacement effect 
+cursorImgEffect : true, // enable cursor effect
+cursorTextEffect : false, // enable cursor text effect
+cursorScaleIntensity : 0.95, // cursor effect intensity
+cursorMomentum : 0.14, // lower is slower
+
+// swipe 
+swipe: true, // enable swipe
+swipeDistance : window.innerWidth * 0.4, // swipe distance - ex : 580
+swipeScaleIntensity: 10, // scale intensity during swipping
+
+// slide transition
+slideTransitionDuration : 1, // transition duration
+transitionScaleIntensity : 30, // scale intensity during transition
+transitionScaleAmplitude : 160, // scale amplitude during transition
+
+// regular navigation
+nav: true, // enable navigation
+navElement: '.main-nav', // set nav class
+
+// image rgb effect
+imagesRgbEffect : false, // enable img rgb effect
+imagesRgbIntensity : 1.9, // set img rgb intensity
+navImagesRgbIntensity : 80, // set img rgb intensity for regular nav 
+
+// texts settings
+textsDisplay : true, // show title
+textsSubTitleDisplay : true, // show subtitles
+textsTiltEffect : true, // enable text tilt
+googleFonts : ['Josefin Sans:700', 'poppins:400'], // select google font to use
+buttonMode : false, // enable button mode for title
+textsRgbEffect : true, // enable text rgb effect
+textsRgbIntensity : 0.09, // set text rgb intensity
+navTextsRgbIntensity : 15, // set text rgb intensity for regular nav
+
+textTitleColor : 'red', // title color
+textTitleSize : 125, // title size
+mobileTextTitleSize : 125, // title size
+textTitleLetterspacing : 3, // title letterspacing
+
+textSubTitleColor : 'red', // subtitle color ex : 0x000000
+textSubTitleSize : 21, // subtitle size
+mobileTextSubTitleSize : 21, // mobile subtitle size
+textSubTitleLetterspacing : 2, // subtitle letter spacing
+textSubTitleOffsetTop : 90, // subtitle offset top
+mobileTextSubTitleOffsetTop : 90, // mobile subtitle offset top});
+});
+
+
+</script>
+
+<script>
+    var canvas=document.querySelector("canvas");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+</script>
+</body>
+</html>
